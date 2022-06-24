@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background: rgb(70, 142, 236);
+      font: normal 15pt arial;
+    }
+    header{
+       color: white;
+       text-align: center;
+    }
+    section{
+       background: white;
+       border-radius: 10px;
+       padding: 15px;
+       width: 500px;
+       height: 250px;
+       margin: auto;
+       box-shadow: 5px 5px 5px #d9d9d9;
+    }
+  
+    footer{
+       color: white;
+       text-align: center;
+       font-style: italic;
+    }
+    #imagem{
+      border-radius: 500px 500px;
+      border: 2px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Verficador de idade</h1>
+  </header>
+  <section>
+    <div id="msg">
+       <p>Ano de Nascimento
+         <input type="number" name="txtano" id="txtano" min="0">
+       </p>
+       <p>Sexo:
+         <input type="radio" name="radsex" id="mas" checked>
+         <label for="mas">Masculino</label>
+         <input type="radio" name="radsex" id="fem">
+         <label for="fem">Feminino</label>
+       </p>
+       <p>
+         <input type="button" value="Verificar" onclick="verificando()">
+       </p>
+    </div>
+    <div id="res">
+       Prencha os dados para ver o Resultado !
+       
+    </div>
+  </section>
+  <footer>
+      <p>&copy;CursoemVideo</p>
+  </footer>
+  <script>
+    function verificando(){
+      var data = new Date()
+      var ano = data.getFullYear()
+      var fano = window.document.getElementById('txtano')
+      var res = window.document.getElementById('res')
+      if (fano.value.length == 0 || Number(fano.value) > ano){
+        window.alert('Verifique os dados e tente novamente !')
+      } else {
+           var fsex = document.getElementsByName('radsex')
+           var idade = ano - Number(fano.value)
+           var genero = ''
+           if(fsex[0].checked){
+            genero = 'Homem'
+            if(idade >= 0 && idade <= 10){
+             res.innerHTML = ('Uma criança do gênero masculino com ' + idade + ' anos.')
+             }else if(idade >= 11 && idade <= 19){
+             res.innerHTML = ('Um adolescente do gênero masculino com ' + idade +' anos.')
+             }else if(idade >= 20 && idade <= 60){
+              res.innerHTML = ('Um adulto do gênero masculino com ' + idade + ' anos.')
+            } else {
+             res.innerHTML = ('Um idoso do gênero masculino com ' + idade + ' anos.')}
+            } else if(fsex[1].checked){
+              genero = 'Mulher'
+              if(idade >= 0 && idade <= 10){
+               res.innerHTML = ('Uma criança do gênero feminino com' + idade + ' anos.')
+              }else if(idade > 10 && idade <= 19){
+              res.innerHTML = ('Uma adolescente do gênero feminino com ' + idade +' anos.')
+              }else if(idade >= 20 && idade <= 60){
+              res.innerHTML = ('Um adulto do gênero feminino com ' + idade + ' anos.')
+              }else {
+              res.innerHTML = ('Um idoso do gênero feminino com ' + idade + ' anos.')
+            }
+          }
+      }  
+    }
+  </script>
+</body>
+</html>
